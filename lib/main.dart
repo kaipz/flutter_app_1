@@ -5,16 +5,6 @@ void main() {
   runApp(MyApp());
 }
 
-// class BarChartSample4 extends StatefulWidget {
-//   BarChartSample4({super.key});
-
-//   final Color dark = Colors.green;
-//   final Color normal = Color.fromARGB(220, 25, 45, 2);
-//   final Color light = Colors.lightGreen;
-
-//   @override
-//   State<StatefulWidget> createState() => BarChartSample4State();
-// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -94,12 +84,13 @@ class _EnergyConsumptionScreenState extends State<EnergyConsumptionScreen> {
             Text(
               'Energy Consumption Table',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 0),
             DataTable(
+              dataRowHeight: 24,
               columns: [
                 DataColumn(label: Text('Month')),
                 DataColumn(label: Text('kWh')),
@@ -121,31 +112,31 @@ class _EnergyConsumptionScreenState extends State<EnergyConsumptionScreen> {
                   DataCell(Text('120')),
                   DataCell(Text('\$60')),
                 ]),
-                // DataRow(cells: [
-                //   DataCell(Text('Apr')),
-                //   DataCell(Text('90')),
-                //   DataCell(Text('\$45')),
-                // ]),
-                // DataRow(cells: [
-                //   DataCell(Text('May')),
-                //   DataCell(Text('130')),
-                //   DataCell(Text('\$65')),
-                // ]),
-                // DataRow(cells: [
-                //   DataCell(Text('Jun')),
-                //   DataCell(Text('180')),
-                //   DataCell(Text('\$90')),
-                // ]),
-                // DataRow(cells: [
-                //   DataCell(Text('Jul')),
-                //   DataCell(Text('140')),
-                //   DataCell(Text('\$70')),
-                // ]),
-                // DataRow(cells: [
-                //   DataCell(Text('Aug')),
-                //   DataCell(Text('110')),
-                //   DataCell(Text('\$55')),
-                // ]),
+                DataRow(cells: [
+                  DataCell(Text('Apr')),
+                  DataCell(Text('90')),
+                  DataCell(Text('\$45')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('May')),
+                  DataCell(Text('130')),
+                  DataCell(Text('\$65')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('Jun')),
+                  DataCell(Text('180')),
+                  DataCell(Text('\$90')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('Jul')),
+                  DataCell(Text('140')),
+                  DataCell(Text('\$70')),
+                ]),
+                DataRow(cells: [
+                  DataCell(Text('Aug')),
+                  DataCell(Text('110')),
+                  DataCell(Text('\$55')),
+                ]),
               ],
             ),
             SizedBox(height: 12),
@@ -157,104 +148,64 @@ class _EnergyConsumptionScreenState extends State<EnergyConsumptionScreen> {
               ),
             ),
             SizedBox(height: 16),
-            Expanded(
-       child:  LayoutBuilder(builder: (context, constraints) {
-            final barsSpace = 4.0 * constraints.maxWidth / 200;
-            final barsWidth = 8.0 * constraints.maxWidth / 200;
-            return BarChart(
-            BarChartData(
-              alignment: BarChartAlignment.spaceEvenly,
-              maxY: 40,
-              titlesData: FlTitlesData(
-                // ... Title settings
-              ),
-                             barGroups: getData(barsWidth, barsSpace),
-
-                ),
-              );
-            
-  }
-  ),
-   
-        ),
+          Expanded(
+  child: BarChart(
+    BarChartData(
       
-          ]
+      gridData: FlGridData( show: false),
+      borderData: FlBorderData(show: false),
+      alignment: BarChartAlignment.spaceEvenly,
+      maxY: 50,
+      axisTitleData: FlAxisTitleData(show:true, leftTitle: AxisTitle(showTitle: true, reservedSize: 10,titleText: "kWh")),
+      titlesData: FlTitlesData(
+      show: true,
+      
+      leftTitles: SideTitles(reservedSize: 40, showTitles: true )
+      ),
+      barGroups: [
+        _buildBarData([5, 10, 20], Colors.green),
+        _buildBarData([10, 20, 30], Colors.green),
+        _buildBarData([15, 25, 30], Colors.green),
+        _buildBarData([5, 20, 35], Colors.green),
+        _buildBarData([5, 20, 45], Colors.green),
+        _buildBarData([12, 20, 20], Colors.green),
+        _buildBarData([15, 20, 35], Colors.green),
+        _buildBarData([20, 30, 40], Colors.green),
+        _buildBarData([10, 40, 50], Colors.green),
+
+      ],
+    ),
   ),
-    ));
+),
+
+          ],
+        ),
+      ),
+    );
   }
 
-List<BarChartGroupData> getData(double barsWidth, double barsSpace) {
-    return [
-      BarChartGroupData(
-        x: 0,
-        barsSpace: barsSpace,
-        barRods: [
-          BarChartRodData(
-            y: 29,
-            rodStackItems: [
-              BarChartRodStackItem(0, 9, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(9, 15, Colors.green),
-              BarChartRodStackItem(15, 29, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          
+BarChartGroupData _buildBarData(List<double> values, Color color) {
+  return BarChartGroupData(
+    x: 0,
+    
+    barsSpace: 4,
+    
+    barRods: [
+      BarChartRodData(
+        y: values[2],
+        width: 16,
+        rodStackItems: [
+          BarChartRodStackItem(0, values[2], Colors.lightGreen),
+          BarChartRodStackItem(0,values[1], Colors.green),
+          BarChartRodStackItem(0, values[0], Color.fromARGB(220, 25, 45, 2)),
         ],
+        borderRadius: BorderRadius.circular(8),
+        colors: [color.withOpacity(1.0)],
       ),
-      BarChartGroupData(
-        x: 1,
-        barsSpace: barsSpace,
-        barRods: [
-          BarChartRodData(
-            y: 31,
-            rodStackItems: [
-              BarChartRodStackItem(0, 11, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(11, 18, Colors.green),
-              BarChartRodStackItem(18, 31, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          
-        ],
-      ),
-      BarChartGroupData(
-        x: 2,
-        barsSpace: barsSpace,
-        barRods: [
-         
-          BarChartRodData(
-            y: 24,
-            rodStackItems: [
-              BarChartRodStackItem(0, 4, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(4, 15, Colors.green),
-              BarChartRodStackItem(15, 24, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
-      ),
-      BarChartGroupData(
-        x: 3,
-        barsSpace: barsSpace,
-        barRods: [
-          
-          BarChartRodData(
-            y: 29,
-            rodStackItems: [
-              BarChartRodStackItem(0, 6, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(6, 23, Colors.green),
-              BarChartRodStackItem(23, 29, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
-      ),
-    ];
-  }
+    ],
+  );
+}
+
 }
 
 class BottomNavItem extends StatelessWidget {
