@@ -159,12 +159,12 @@ class _EnergyConsumptionScreenState extends State<EnergyConsumptionScreen> {
             SizedBox(height: 16),
             Expanded(
        child:  LayoutBuilder(builder: (context, constraints) {
-            final barsSpace = 4.0 * constraints.maxWidth / 400;
-            final barsWidth = 8.0 * constraints.maxWidth / 400;
+            final barsSpace = 4.0 * constraints.maxWidth / 200;
+            final barsWidth = 8.0 * constraints.maxWidth / 200;
             return BarChart(
             BarChartData(
               alignment: BarChartAlignment.spaceEvenly,
-              maxY: 200,
+              maxY: 40,
               titlesData: FlTitlesData(
                 // ... Title settings
               ),
@@ -185,7 +185,23 @@ class _EnergyConsumptionScreenState extends State<EnergyConsumptionScreen> {
 
 List<BarChartGroupData> getData(double barsWidth, double barsSpace) {
     return [
-    
+      BarChartGroupData(
+        x: 0,
+        barsSpace: barsSpace,
+        barRods: [
+          BarChartRodData(
+            y: 29,
+            rodStackItems: [
+              BarChartRodStackItem(0, 9, Color.fromARGB(220, 25, 45, 2)),
+              BarChartRodStackItem(9, 15, Colors.green),
+              BarChartRodStackItem(15, 29, Colors.lightGreen),
+            ],
+            borderRadius: BorderRadius.zero,
+            width: barsWidth,
+          ),
+          
+        ],
+      ),
       BarChartGroupData(
         x: 1,
         barsSpace: barsSpace,
@@ -200,92 +216,14 @@ List<BarChartGroupData> getData(double barsWidth, double barsSpace) {
             borderRadius: BorderRadius.zero,
             width: barsWidth,
           ),
-          BarChartRodData(
-            y: 35,
-            rodStackItems: [
-              BarChartRodStackItem(0, 14, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(14, 27, Colors.green),
-              BarChartRodStackItem(27, 35, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 31,
-            rodStackItems: [
-              BarChartRodStackItem(0, 8, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(8, 24, Colors.green),
-              BarChartRodStackItem(24, 31, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 15,
-            rodStackItems: [
-              BarChartRodStackItem(0, 6.5, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(6.5, 12.5, Colors.green),
-              BarChartRodStackItem(12.5, 15, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 17,
-            rodStackItems: [
-              BarChartRodStackItem(0, 9, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(9, 15, Colors.green),
-              BarChartRodStackItem(15, 17, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
+          
         ],
       ),
       BarChartGroupData(
         x: 2,
         barsSpace: barsSpace,
         barRods: [
-          BarChartRodData(
-            y: 34,
-            rodStackItems: [
-              BarChartRodStackItem(0, 6, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(6, 23, Colors.green),
-              BarChartRodStackItem(23, 34, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 32,
-            rodStackItems: [
-              BarChartRodStackItem(0, 7, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(7, 24, Colors.green),
-              BarChartRodStackItem(24, 32, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 14.5,
-            rodStackItems: [
-              BarChartRodStackItem(0, 1.5, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(1.5, 12, Colors.green),
-              BarChartRodStackItem(12, 14.5, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 20,
-            rodStackItems: [
-              BarChartRodStackItem(0, 4, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(4, 15, Colors.green),
-              BarChartRodStackItem(15, 20, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
+         
           BarChartRodData(
             y: 24,
             rodStackItems: [
@@ -302,52 +240,13 @@ List<BarChartGroupData> getData(double barsWidth, double barsSpace) {
         x: 3,
         barsSpace: barsSpace,
         barRods: [
-          BarChartRodData(
-            y: 14,
-            rodStackItems: [
-              BarChartRodStackItem(0, 1.5, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(1.5, 12, Colors.green),
-              BarChartRodStackItem(12, 14, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 27,
-            rodStackItems: [
-              BarChartRodStackItem(0, 7, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(7, 25, Colors.green),
-              BarChartRodStackItem(25, 27, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
+          
           BarChartRodData(
             y: 29,
             rodStackItems: [
               BarChartRodStackItem(0, 6, Color.fromARGB(220, 25, 45, 2)),
               BarChartRodStackItem(6, 23, Colors.green),
               BarChartRodStackItem(23, 29, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 16.5,
-            rodStackItems: [
-              BarChartRodStackItem(0, 9, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(9, 15, Colors.green),
-              BarChartRodStackItem(15, 16.5, Colors.lightGreen),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            y: 15,
-            rodStackItems: [
-              BarChartRodStackItem(0, 7, Color.fromARGB(220, 25, 45, 2)),
-              BarChartRodStackItem(7, 12.5, Colors.green),
-              BarChartRodStackItem(12.5, 15, Colors.lightGreen),
             ],
             borderRadius: BorderRadius.zero,
             width: barsWidth,
